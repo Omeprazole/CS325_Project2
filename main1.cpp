@@ -38,7 +38,7 @@ void Tokenize(const string& str,
 int main(int argc, char* argv[]) {
 	//Check the number of argument
 	if (argc != 2){
-		cout << "Error, please input only one argument." << endl;
+		cout << "Error, please input a file name as an argument." << endl;
 		return 0;
 	}
 
@@ -71,7 +71,7 @@ int main(int argc, char* argv[]) {
 
 	ofstream output_file;
 	string of_name = if_name.replace(if_name.begin() 
-			+ if_name.find_last_of("."), if_name.end(), "chang.txt");
+			+ if_name.find_last_of("."), if_name.end(), "change.txt");
 
 	//Call algorithms function here
 	
