@@ -14,7 +14,7 @@ vector<int> changeslow(const vector<int>& V, int A);
 vector<int> slowhelper(const vector<int>& V, int A, vector<vector<int> >* visited);
 int count(const vector<int>& coins);
 vector<int> merge(const vector<int>& low, const vector<int>& high);
-
+int slowhelper2(const vector<int>& V, int A);
 //Greedy Algorithm
 vector<int> changegreedy(const vector<int>& V, int A);
 

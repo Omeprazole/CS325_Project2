@@ -8,13 +8,14 @@ void printVector(const vector<int> &C){
 }
 //Brute Force or Divede and Conquer Algorithm
 vector<int> changeslow(const vector<int>& V, int A){
-	cout << "vector V:" ;
+/*	cout << "vector V:" ;
 	printVector(V);
 	cout <<"\n Amount " << A << endl; 
         vector<vector<int> > visited(A);
 	vector<int> C = slowhelper(V, A, &visited);
-	printVector(C);
-	cout << "conins num" << count(C) << endl;
+	printVector(C);*/
+	vector<int> C(V.size(), 0);
+	cout << "conins num" << slowhelper2(V, A) << endl;
 	return C;
 
 }
@@ -73,6 +74,23 @@ vector<int> slowhelper(const vector<int>& V, int A, vector<vector<int> >* visite
 	}
 	return C;
 }
+
+int slowhelper2(const vector<int>& V, int A){
+	for(int i = 0; i < V.size(); i++){
+		if(A == V[i]){
+			return 1;
+		}
+	}
+	
+	int min_sum = INT_MAX;
+	for(int i = 0; i < V.size() && A > V[i]; i++){
+		if(min_sum > slowhelper2(V, A- V[i])){
+			min_sum = slowhelper2(V, A - V[i]);
+		}
+	}
+	return min_sum + 1;
+}
+
 //Greedy Algorithm
 vector<int> changegreedy(const vector<int>& V, int A){
 
