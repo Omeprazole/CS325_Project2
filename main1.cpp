@@ -74,6 +74,11 @@ int main(int argc, char* argv[]) {
 			+ if_name.find_last_of("."), if_name.end(), "change.txt");
 
 	//Call algorithms function here
+	//cout << rows.size() << " rowsize" << endl;
+	for(int i = 0; i < rows.size(); i += 2){
+		cout<< rows[i].size() << " size" << endl;
+		changeslow(rows[i], rows[i + 1][0]);
+	}
 	
 	output_file.open(of_name.c_str());
 
