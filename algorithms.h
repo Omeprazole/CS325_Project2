@@ -20,5 +20,6 @@ vector<int> changegreedy(const vector<int>& V, int A);
 
 //Dynamic Programming Algorithm
 vector<int> changedp(const vector<int>& V, int A);
+int dpHelper(const vector <int> &V, vector <int> &T, int n, int cents);
 
 #endif

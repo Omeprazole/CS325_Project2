@@ -15,7 +15,7 @@ vector<int> changeslow(const vector<int>& V, int A){
 	vector<int> C = slowhelper(V, A, &visited);
 	printVector(C);*/
 	vector<int> C(V.size(), 0);
-	cout << "conins num" << slowhelper2(V, A) << endl;
+	cout << "coins num " << slowhelper2(V, A) << endl;
 	return C;
 
 }
@@ -93,10 +93,50 @@ int slowhelper2(const vector<int>& V, int A){
 
 //Greedy Algorithm
 vector<int> changegreedy(const vector<int>& V, int A){
-
+  vector <int> C(V.size(), 0);
+  while(A > 0)
+    {
+      for(int x = V.size()-1; x >= 0; x--)
+	{
+	  if(V.at(x) <= A) {
+	    C.at(x) += 1;
+	    A -= V.at(x);
+	    break;
+	  }
+	}
+    }
+  printVector(C);
 }
 
 //Dynamic Programming Algorithm
 vector<int> changedp(const vector<int>& V, int A){
-
+  vector <int> T(1,0);
+  int numCoins = dpHelper(V, T, 1, A);
+  cout << "*" << numCoins << "*" << endl;
 }
+
+int dpHelper(const vector <int> &V, vector <int> &T, int n, int cents)
+{
+  int minCoins = n;
+  int numCoins;
+  for(int x = 0; x < V.size(); x++) {
+    if(n == V.at(x)) {
+      minCoins = 1;
+      break;
+    }
+  }
+  for(int i = 1; i < n; i++) {
+    numCoins = T.at(i) + T.at(n - i);
+    minCoins = min(minCoins, numCoins);
+    if(i == n) {
+      break;
+    }
+  }
+  T.push_back(minCoins);
+  if(n == cents) {
+    return T.at(n);
+  } else {
+    return dpHelper(V, T, n + 1, cents);
+  }
+}
+
