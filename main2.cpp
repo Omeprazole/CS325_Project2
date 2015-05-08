@@ -11,7 +11,7 @@ void slow(vector <vector <int> > &V, vector <vector <int> > &A);
 void greedy(vector <vector <int> > &V, vector <vector <int> > &A);
 void dynamic(vector <vector <int> > &V, vector <vector <int> > &A);
 void runTime(int choice, vector <vector <int> > &V);
-
+void runSlow(vector <vector <int> > &V);
 double getMilliseconds() {
 	return 1000.0 * clock() / CLOCKS_PER_SEC;
 }
@@ -23,7 +23,6 @@ int main(int argc, char* argv[]) {
     return 1;
   }
   vector <vector <int> > V;
-  vector <vector <int> > A;
   string line, value;
   for(int x = 0; x < 4; x++) {
     getline(file, line, '\n');
@@ -42,6 +41,10 @@ int main(int argc, char* argv[]) {
     }
     cout << endl;
     }*/
+
+
+  vector <vector <int> > A;
+
   vector <int> temp;
   int cents;
   //for #4
@@ -66,8 +69,7 @@ int main(int argc, char* argv[]) {
 
   switch(choice) {
   case 1:
-    cout << "Too slow to use the same values\n";
-    //slow(V,A);
+    runSlow(V);
     break;
   case 2:
     greedy(V,A);
@@ -83,13 +85,34 @@ int main(int argc, char* argv[]) {
 
 }
 
+void runSlow(vector <vector <int> > &V)
+{
+  vector <int> temp;
+  vector <vector <int> > A;
+  int cents;
+  //for #4
+  for(cents = 10; cents <= 30; cents += 5) {
+    temp.push_back(cents);
+  } 
+  A.push_back(temp);
+  //for #5 & #6
+  temp.empty();
+  for(cents = 10; cents <= 20; cents++) {
+    temp.push_back(cents);
+  }
+  A.push_back(temp);
+  //slow(V,A);
+  greedy(V,A);
+  dynamic(V,A);
+}
+
 void runTime(int choice, vector <vector <int> > &V)
 {
   vector <int> A;
   int MIN, MAX;
   ofstream ofile;
   ofile.open("timing.csv");
-  cout << "What is yoru min cents? ";
+  cout << "What is your min cents? ";
   cin >> MIN;
   cout << "What is your max cents? ";
   cin >> MAX;
@@ -219,6 +242,8 @@ void dynamic(vector <vector <int> > &V, vector <vector <int> > &A)
   cout << "Opening dp-report5a.csv...";
   ofile.open("dp-report5a.csv");
   for(int x = 0; x < A[1].size(); x++) {
+    cout << "A: " << A[1].at(x) << " V: ";
+    printVector(V[1]);
     vector <int> C = changedp(V[1], A[1].at(x));
     ofile << A[1].at(x) << "," << count(C) << "\n";
   }
@@ -228,6 +253,8 @@ void dynamic(vector <vector <int> > &V, vector <vector <int> > &A)
   cout << "Opening dp-report5b.csv...";
   ofile.open("dp-report5b.csv");
   for(int x = 0; x < A[1].size(); x++) {
+    cout << "A: " << A[1].at(x) << " V: ";
+    printVector(V[1]);
     vector <int> C = changedp(V[2], A[1].at(x));
     ofile << A[1].at(x) << "," << count(C) << "\n";
   }
@@ -237,6 +264,8 @@ void dynamic(vector <vector <int> > &V, vector <vector <int> > &A)
   cout << "opening dp-report6.csv...";
   ofile.open("dp-report6.csv");
   for(int x = 0; x < A[1].size(); x++) {
+    cout << "A: " << A[1].at(x) << " V: ";
+    printVector(V[1]);
     vector <int> C = changedp(V[3], A[1].at(x));
     ofile << A[1].at(x) << "," << count(C) << "\n";
   }
