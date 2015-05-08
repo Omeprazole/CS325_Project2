@@ -6,20 +6,10 @@ void printVector(const vector<int> &C){
 	}
 	cout << endl;
 }
-//Brute Force or Divede and Conquer Algorithm
-vector<int> changeslow(const vector<int>& V, int A){
-/*	cout << "vector V:" ;
-	printVector(V);
-	cout <<"\n Amount " << A << endl; 
-        vector<vector<int> > visited(A);
-	vector<int> C = slowhelper(V, A, &visited);
-	printVector(C);*/
-	vector<int> C(V.size(), 0);
-	cout << "coins num " << slowhelper2(V, A) << endl;
-	return C;
 
-}
-
+/*
+ * Count total coins needed with the coin number of each dominations
+ */
 int count(const vector<int>& coins){
 	int sum = 0;
 	for(int i = 0; i < coins.size(); i++){
@@ -28,6 +18,9 @@ int count(const vector<int>& coins){
 	return sum;
 }
 
+/*
+ * Help changeslow function, conquer two divided vectors
+ */
 vector<int> merge(const vector<int>& low, const vector<int>& high){
 	vector<int> total(low.size(), 0);
 	for(int i = 0; i < total.size(); i++){
@@ -36,59 +29,47 @@ vector<int> merge(const vector<int>& low, const vector<int>& high){
 	return total;
 }
 
-vector<int> slowhelper(const vector<int>& V, int A, vector<vector<int> >* visited){
-	//cout << "help " << A << endl;
-	//int coins_num;
+
+/*
+ * Brute Force or Divede and Conquer Algorithm
+ * Recursively find the correponding coin number of each denominations
+ */
+vector<int> changeslow(const vector<int>& V, int A){
+	//Declare a vector to store the correponding coin number 
+	//of each denominations. Initialize each element to 0.
 	vector<int> C(V.size(), 0);
+
+	//Base case
 	for(int i = 0; i < V.size(); i++){
 		if(A == V[i]){
-			//cout << "bingo" << endl;
 			C[i] = 1;
 			return C;
 		}
 	} 
 	
+	//Define a variable to hold the minimum sum
+	//Initialize it to max int
 	int min_sum = INT_MAX;
-	for(int j = A - 1; j >= A/2; j--){
-		vector<int> low;
-		if (!(*visited)[A-j].empty()) {
-			low = (*visited)[A-j];
-		} else {
-			low = slowhelper(V, A - j, visited); 
-			(*visited)[A-j] = low;
-		}
 
-		vector<int> high;
-                if (!(*visited)[j].empty()) {
-                        high = (*visited)[j];
-                } else {
-                        high = slowhelper(V, j, visited);
-                        (*visited)[j] = high;
-                }
+	//Recursive case
+	for(int i = A - 1; i >= A/2; i--){
+		vector<int> low, high;
+
+		//Find the minimum number of coins needed to make A-i cents
+		low = changeslow(V, A - i);
+
+		//Find the minimum number of coins needed to make i cents
+		high = changeslow(V, i);
+
+		//Choose the i that minimizes this sum
 		int sum = count(low) + count(high);
-		//cout << "sum = " << sum << endl;
 		if(min_sum > sum){
 			min_sum = sum;
 			C = merge(low, high);
 		}
+
 	}
 	return C;
-}
-
-int slowhelper2(const vector<int>& V, int A){
-	for(int i = 0; i < V.size(); i++){
-		if(A == V[i]){
-			return 1;
-		}
-	}
-	
-	int min_sum = INT_MAX;
-	for(int i = 0; i < V.size() && A > V[i]; i++){
-		if(min_sum > slowhelper2(V, A- V[i])){
-			min_sum = slowhelper2(V, A - V[i]);
-		}
-	}
-	return min_sum + 1;
 }
 
 //Greedy Algorithm
