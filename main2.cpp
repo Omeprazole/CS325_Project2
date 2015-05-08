@@ -242,8 +242,6 @@ void dynamic(vector <vector <int> > &V, vector <vector <int> > &A)
   cout << "Opening dp-report5a.csv...";
   ofile.open("dp-report5a.csv");
   for(int x = 0; x < A[1].size(); x++) {
-    cout << "A: " << A[1].at(x) << " V: ";
-    printVector(V[1]);
     vector <int> C = changedp(V[1], A[1].at(x));
     ofile << A[1].at(x) << "," << count(C) << "\n";
   }
@@ -253,8 +251,6 @@ void dynamic(vector <vector <int> > &V, vector <vector <int> > &A)
   cout << "Opening dp-report5b.csv...";
   ofile.open("dp-report5b.csv");
   for(int x = 0; x < A[1].size(); x++) {
-    cout << "A: " << A[1].at(x) << " V: ";
-    printVector(V[1]);
     vector <int> C = changedp(V[2], A[1].at(x));
     ofile << A[1].at(x) << "," << count(C) << "\n";
   }
@@ -264,8 +260,6 @@ void dynamic(vector <vector <int> > &V, vector <vector <int> > &A)
   cout << "opening dp-report6.csv...";
   ofile.open("dp-report6.csv");
   for(int x = 0; x < A[1].size(); x++) {
-    cout << "A: " << A[1].at(x) << " V: ";
-    printVector(V[1]);
     vector <int> C = changedp(V[3], A[1].at(x));
     ofile << A[1].at(x) << "," << count(C) << "\n";
   }

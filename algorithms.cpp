@@ -153,11 +153,12 @@ vector<int> changedp(const vector<int>& V, int A){
 			
     }
   }
-  //  cout << "Before TRACK";
+  cout << "";
   //Track to find the number of coins on each coin value
   int track = T[V.size() - 1][A];
   int i = V.size() - 1;
   for(int j = A; j > 0; ){
+
     if(T[i - 1][j] == track){
       i--;
 			
