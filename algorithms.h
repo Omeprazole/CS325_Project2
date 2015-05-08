@@ -7,14 +7,19 @@
 #include <climits>
 
 using namespace std;
+
+//Untility funcitons
 void printVector(const vector<int> &C);
+
+//Count total number in a vector
+int count(const vector<int>& coins);
+
 
 //Brute Force or Divde and Conquer Algorithm
 vector<int> changeslow(const vector<int>& V, int A);
-vector<int> slowhelper(const vector<int>& V, int A, vector<vector<int> >* visited);
-int count(const vector<int>& coins);
+//Help changeslow funciton to merge two vectors
 vector<int> merge(const vector<int>& low, const vector<int>& high);
-int slowhelper2(const vector<int>& V, int A);
+
 //Greedy Algorithm
 vector<int> changegreedy(const vector<int>& V, int A);
 
