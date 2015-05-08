@@ -76,6 +76,17 @@ vector<int> changegreedy(const vector<int>& V, int A){
   vector <int> C(V.size(), 0);
   while(A > 0)
     {
+<<<<<<< HEAD
+      	for(int x = V.size()-1; x >= 0; x--)
+		{
+		  	if(V.at(x) <= A) 
+		  	{
+		    	C.at(x) += 1;
+		    	A -= V.at(x);
+		    	break;
+		  	}
+		}
+=======
       for(int x = V.size()-1; x >= 0; x--)
 	{
 	  if(V.at(x) <= A) {
@@ -84,6 +95,7 @@ vector<int> changegreedy(const vector<int>& V, int A){
 	    break;
 	  }
 	}
+>>>>>>> origin/master
     }
 
 	return C;
@@ -94,6 +106,8 @@ vector<int> changegreedy(const vector<int>& V, int A){
 /*vector<int> changedp(const vector<int>& V, int A){
   vector <int> T(1,0);
   int numCoins = dpHelper(V, T, 1, A);
+  vector <int> C(V.size(), 0);
+  for (int x = 0; x < C.size)
   cout << "*" << numCoins << "*" << endl;
 }
 
