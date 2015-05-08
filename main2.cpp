@@ -87,6 +87,8 @@ void runTime(int choice, vector <vector <int> > &V)
 {
   vector <int> A;
   int MIN, MAX;
+  ofstream ofile;
+  ofile.open("timing.csv");
   cout << "What is yoru min cents? ";
   cin >> MIN;
   cout << "What is your max cents? ";
@@ -112,7 +114,10 @@ void runTime(int choice, vector <vector <int> > &V)
     }
     double t2 = getMilliseconds() - t1;
     cout << "Total Time for 100 loops: " << t2 << " A: " << x << endl;
+    ofile << t2 << "," << x << endl;
+
   }
+  ofile.close();
 }
 
 void slow(vector <vector <int> > &V, vector <vector <int> > &A)
