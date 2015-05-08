@@ -35,6 +35,15 @@ void Tokenize(const string& str,
 	}
 }
 
+//output the vector into a file with the formate "[c1, c2, ..., cn]"
+void outputVector(ofstream& output, vector<int>& C){
+	output << "[";
+	for(int i = 0; i < C.size() - 1; i++){
+		output << C[i] << ",";
+	}
+	output << C[C.size() - 1] << "]" << endl;
+}
+
 int main(int argc, char* argv[]) {
 	//Check the number of argument
 	if (argc != 2){
@@ -74,12 +83,10 @@ int main(int argc, char* argv[]) {
 			+ if_name.find_last_of("."), if_name.end(), "change.txt");
 
 	//Call algorithms function here
-	//cout << rows.size() << " rowsize" << endl;
 	for(int i = 0; i < rows.size(); i += 2){
-		cout<< rows[i].size() << " size" << endl;
-		//changeslow(rows[i], rows[i + 1][0]);
-		//changegreedy(rows[i], rows[i + 1][0]);
-		changedp(rows[i], rows[i + 1][0]);
+		changeslow(rows[i], rows[i + 1][0]);
+	//	changegreedy(rows[i], rows[i + 1][0]);
+	//	changedp(rows[i], rows[i + 1][0]);
 	}
 	
 	output_file.open(of_name.c_str());
@@ -89,7 +96,31 @@ int main(int argc, char* argv[]) {
 		cout << "Unable to open file." << endl;
 		return -1;
 	}
-	output_file << "I am open" << endl;
 
+	//Output results of each algorithm in the file
+	output_file << "Divide and Conquer Algorithm Result:" << endl;
+	for(int i = 0; i < rows.size(); i +=2){
+		vector<int> C = changeslow(rows[i], rows[i + 1][0]);
+		outputVector(output_file, C);
+		output_file << count(C) << endl;
+		C.clear();
+	}
+
+ /*       output_file << "\nGreedy Algorithm Result:" << endl;
+        for(int i = 0; i < rows.size(); i +=2){
+                vector<int> C = changegreedy(rows[i], rows[i + 1][0]);
+                outputVector(output_file, C);
+                output_file << count(C) << endl;
+                C.clear();
+        }
+
+        output_file << "\nDynamic Programming Result:" << endl;
+        for(int i = 0; i < rows.size(); i +=2){
+                vector<int> C = changedp(rows[i], rows[i + 1][0]);
+                outputVector(output_file, C);
+                output_file << count(C) << endl;
+                C.clear();
+        }
+*/
 	output_file.close();
 }
