@@ -66,7 +66,8 @@ int main(int argc, char* argv[]) {
 
   switch(choice) {
   case 1:
-    slow(V,A);
+    cout << "Too slow to use the same values\n";
+    //slow(V,A);
     break;
   case 2:
     greedy(V,A);
@@ -91,24 +92,26 @@ void runTime(int choice, vector <vector <int> > &V)
   cout << "What is your max cents? ";
   cin >> MAX;
 
-  for(int x = MIN; x < MAX; x += 10) {
+  for(int x = MIN; x < MAX; x += (MAX - MIN)/10 + 1) { //the +1 prevents adding 0 each time
     double t1 = getMilliseconds();
-    switch(choice){
-    case 1:
-      changeslow(V[0], x);
-      break;
-    case 2:
-      changegreedy(V[0], x);
-      break;
-    case 3:
-      changedp(V[0], x);
-      break;
-    default:
-      cout << "Invalid Choice";
-      break;
+    for(int y = 0; y < 100; y++) {
+      switch(choice){
+      case 1:
+	changeslow(V[0], x);
+	break;
+      case 2:
+	changegreedy(V[0], x);
+	break;
+      case 3:
+	changedp(V[0], x);
+	break;
+      default:
+	cout << "Invalid Choice";
+	break;
+      }
     }
     double t2 = getMilliseconds() - t1;
-    cout << "Total Time: " << t2 << " A: " << x << endl;
+    cout << "Total Time for 100 loops: " << t2 << " A: " << x << endl;
   }
 }
 
