@@ -76,17 +76,6 @@ vector<int> changegreedy(const vector<int>& V, int A){
   vector <int> C(V.size(), 0);
   while(A > 0)
     {
-<<<<<<< HEAD
-      	for(int x = V.size()-1; x >= 0; x--)
-		{
-		  	if(V.at(x) <= A) 
-		  	{
-		    	C.at(x) += 1;
-		    	A -= V.at(x);
-		    	break;
-		  	}
-		}
-=======
       for(int x = V.size()-1; x >= 0; x--)
 	{
 	  if(V.at(x) <= A) {
@@ -95,7 +84,6 @@ vector<int> changegreedy(const vector<int>& V, int A){
 	    break;
 	  }
 	}
->>>>>>> origin/master
     }
 
 	return C;
