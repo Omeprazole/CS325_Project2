@@ -81,19 +81,17 @@ vector<int> changegreedy(const vector<int>& V, int A){
 	  if(V.at(x) <= A) {
 	    C.at(x) += 1;
 	    A -= V.at(x);
-	cout << "A " << A << endl;
 	    break;
 	  }
 	}
     }
-  printVector(C);
 
 	return C;
 
 }
 
 //Dynamic Programming Algorithm
-vector<int> changedp(const vector<int>& V, int A){
+/*vector<int> changedp(const vector<int>& V, int A){
   vector <int> T(1,0);
   int numCoins = dpHelper(V, T, 1, A);
   cout << "*" << numCoins << "*" << endl;
@@ -122,5 +120,68 @@ int dpHelper(const vector <int> &V, vector <int> &T, int n, int cents)
   } else {
     return dpHelper(V, T, n + 1, cents);
   }
+}*/
+
+vector<int> changedp(const vector<int>& V, int A){
+	//Define a vector to hold the coin number of each coin value
+	vector<int> C(V.size(), 0);
+
+	//Define a two dimentional array(table) to memory the minimum coin number
+	//of each amount of money from 0 to A
+	int T[V.size()][A + 1];
+
+	//Initialize the first column of the table to 0
+	for(int i = 0; i < V.size(); i++){
+		T[i][0] = 0;
+	}
+
+	//Initialize the first row of table
+	for(int j = 1; j <= A; j++){
+		T[0][j] = j;
+	}
+
+	//Calculate each minimum number
+	for(int i = 1; i < V.size(); i++){
+		for(int j = 1; j <= A; j++){
+			if( j >= V[i]){
+				T[i][j] = min(T[i - 1][j], T[i][j - V[i]] + 1); 
+			} else {
+				T[i][j] = T[i - 1][j];
+			}
+			
+		}
+	}
+
+	//Track to find the number of coins on each coin value
+	int track = T[V.size() - 1][A];
+	int i = V.size() - 1;
+	for(int j = A; j > 0; ){
+		if(T[i - 1][j] == track){
+			i--;
+			
+		} else {
+			if(T[i][j - V[i]] == track - 1){
+				track--;
+				C[i]++;
+				j = j - V[i];
+			}
+		}
+	}
+	
+	//return result
+	return C;
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
 
