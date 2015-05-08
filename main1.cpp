@@ -8,7 +8,6 @@ name [input filename]change.txt
 #include "algorithms.h"
 #include <fstream>		
 #include <iostream>		
-#include <vector>
 #include <cstring>
 #include <cstdio>		//printf
 #include <stdlib.h>		//atoi
@@ -71,9 +70,7 @@ int main(int argc, char* argv[]) {
 		Tokenize(line, row, " [],");
 		for (int i = 0; i < row.size(); i++) {
 			nums.push_back(atoi(row[i].c_str()));
-			cout << nums[i] << " ";
 		}
-		cout << endl;
 		rows.push_back(nums);
 	}
 	input_file.close();
@@ -82,12 +79,6 @@ int main(int argc, char* argv[]) {
 	string of_name = if_name.replace(if_name.begin() 
 			+ if_name.find_last_of("."), if_name.end(), "change.txt");
 
-	//Call algorithms function here
-	for(int i = 0; i < rows.size(); i += 2){
-	//		changeslow(rows[i], rows[i + 1][0]);
-		changegreedy(rows[i], rows[i + 1][0]);
-	//	changedp(rows[i], rows[i + 1][0]);
-	}
 	
 	output_file.open(of_name.c_str());
 
@@ -97,8 +88,9 @@ int main(int argc, char* argv[]) {
 		return -1;
 	}
 
+	cout << "Waitting for output results into " << of_name << " file" << endl;
 	//Output results of each algorithm in the file
-/*	output_file << "Divide and Conquer Algorithm Result:" << endl;
+	output_file << "Divide and Conquer Algorithm Result:" << endl;
 	for(int i = 0; i < rows.size(); i +=2){
 		vector<int> C = changeslow(rows[i], rows[i + 1][0]);
 		outputVector(output_file, C);
@@ -121,6 +113,7 @@ int main(int argc, char* argv[]) {
                 output_file << count(C) << endl;
                 C.clear();
         }
-*/
+	cout << "Done, results are output into the " << of_name << " file" << endl;
+
 	output_file.close();
 }
