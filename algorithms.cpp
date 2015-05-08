@@ -38,7 +38,6 @@ vector<int> changeslow(const vector<int>& V, int A){
 	//Declare a vector to store the correponding coin number 
 	//of each denominations. Initialize each element to 0.
 	vector<int> C(V.size(), 0);
-
 	//Base case
 	for(int i = 0; i < V.size(); i++){
 		if(A == V[i]){
@@ -82,11 +81,15 @@ vector<int> changegreedy(const vector<int>& V, int A){
 	  if(V.at(x) <= A) {
 	    C.at(x) += 1;
 	    A -= V.at(x);
+	cout << "A " << A << endl;
 	    break;
 	  }
 	}
     }
   printVector(C);
+
+	return C;
+
 }
 
 //Dynamic Programming Algorithm

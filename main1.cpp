@@ -84,8 +84,8 @@ int main(int argc, char* argv[]) {
 
 	//Call algorithms function here
 	for(int i = 0; i < rows.size(); i += 2){
-		changeslow(rows[i], rows[i + 1][0]);
-	//	changegreedy(rows[i], rows[i + 1][0]);
+	//		changeslow(rows[i], rows[i + 1][0]);
+		changegreedy(rows[i], rows[i + 1][0]);
 	//	changedp(rows[i], rows[i + 1][0]);
 	}
 	
@@ -98,7 +98,7 @@ int main(int argc, char* argv[]) {
 	}
 
 	//Output results of each algorithm in the file
-	output_file << "Divide and Conquer Algorithm Result:" << endl;
+/*	output_file << "Divide and Conquer Algorithm Result:" << endl;
 	for(int i = 0; i < rows.size(); i +=2){
 		vector<int> C = changeslow(rows[i], rows[i + 1][0]);
 		outputVector(output_file, C);
@@ -106,7 +106,7 @@ int main(int argc, char* argv[]) {
 		C.clear();
 	}
 
- /*       output_file << "\nGreedy Algorithm Result:" << endl;
+       output_file << "\nGreedy Algorithm Result:" << endl;
         for(int i = 0; i < rows.size(); i +=2){
                 vector<int> C = changegreedy(rows[i], rows[i + 1][0]);
                 outputVector(output_file, C);
