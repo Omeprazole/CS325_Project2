@@ -1,7 +1,7 @@
 /******************************************************************************
-Read the specific input file from command line, get the coins of denominations 
-and amount of money to be made change from that file. Use three algorithms 
-calculate the minimize the total number of coins needed and the number of 
+Read the specific input file from command line, get the coins of denominations
+and amount of money to be made change from that file. Use three algorithms
+calculate the minimize the total number of coins needed and the number of
 coins it took on each denomination value. Output the results in another file
 name [input filename]change.txt
 ******************************************************************************/
@@ -37,7 +37,7 @@ void Tokenize(const string& str,
 //output the vector into a file with the formate "[c1, c2, ..., cn]"
 void outputVector(ofstream& output, vector<int>& C){
 	output << "[";
-	for(int i = 0; i < C.size() - 1; i++){
+	for (int i = 0; i < C.size() - 1; i++){
 		output << C[i] << ",";
 	}
 	output << C[C.size() - 1] << "]" << endl;
@@ -76,10 +76,10 @@ int main(int argc, char* argv[]) {
 	input_file.close();
 
 	ofstream output_file;
-	string of_name = if_name.replace(if_name.begin() 
-			+ if_name.find_last_of("."), if_name.end(), "change.txt");
+	string of_name = if_name.replace(if_name.begin()
+		+ if_name.find_last_of("."), if_name.end(), "change.txt");
 
-	
+
 	output_file.open(of_name.c_str());
 
 	//Check if output file is open
@@ -91,28 +91,28 @@ int main(int argc, char* argv[]) {
 	cout << "Waitting for output results into " << of_name << " file" << endl;
 	//Output results of each algorithm in the file
 	output_file << "Divide and Conquer Algorithm Result:" << endl;
-	for(int i = 0; i < rows.size(); i +=2){
+	for (int i = 0; i < rows.size(); i += 2){
 		vector<int> C = changeslow(rows[i], rows[i + 1][0]);
 		outputVector(output_file, C);
 		output_file << count(C) << endl;
 		C.clear();
 	}
 
-       output_file << "\nGreedy Algorithm Result:" << endl;
-        for(int i = 0; i < rows.size(); i +=2){
-                vector<int> C = changegreedy(rows[i], rows[i + 1][0]);
-                outputVector(output_file, C);
-                output_file << count(C) << endl;
-                C.clear();
-        }
+	output_file << "\nGreedy Algorithm Result:" << endl;
+	for (int i = 0; i < rows.size(); i += 2){
+		vector<int> C = changegreedy(rows[i], rows[i + 1][0]);
+		outputVector(output_file, C);
+		output_file << count(C) << endl;
+		C.clear();
+	}
 
-        output_file << "\nDynamic Programming Result:" << endl;
-        for(int i = 0; i < rows.size(); i +=2){
-                vector<int> C = changedp(rows[i], rows[i + 1][0]);
-                outputVector(output_file, C);
-                output_file << count(C) << endl;
-                C.clear();
-        }
+	output_file << "\nDynamic Programming Result:" << endl;
+	for (int i = 0; i < rows.size(); i += 2){
+		vector<int> C = changedp(rows[i], rows[i + 1][0]);
+		outputVector(output_file, C);
+		output_file << count(C) << endl;
+		C.clear();
+	}
 	cout << "Done, results are output into the " << of_name << " file" << endl;
 
 	output_file.close();
