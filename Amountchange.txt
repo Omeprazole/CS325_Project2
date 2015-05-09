@@ -1,0 +1,17 @@
+Divide and Conquer Algorithm Result:
+[0,0,2]
+2
+[1,0,3,0]
+4
+
+Greedy Algorithm Result:
+[0,0,2]
+2
+[1,0,3,0]
+4
+
+Dynamic Programming Result:
+[0,0,2]
+2
+[1,0,3,0]
+4

@@ -1,0 +1,23 @@
+Divide and Conquer Algorithm Result:
+[1,1,1,1]
+4
+[0,1,2,1]
+4
+[0,0,1,2]
+3
+
+Greedy Algorithm Result:
+[1,1,1,1]
+4
+[2,1,0,2]
+5
+[0,0,1,2]
+3
+
+Dynamic Programming Result:
+[1,1,1,1]
+4
+[0,1,2,1]
+4
+[0,0,1,2]
+3
