@@ -53,7 +53,7 @@ int main(int argc, char* argv[]) {
 	}
 	A.push_back(temp);
 	//for #5 & #6
-	temp.empty();
+	temp.clear();
 	for (cents = 2000; cents <= 2200; cents++) {
 		temp.push_back(cents);
 	}
@@ -96,12 +96,12 @@ void runSlow(vector <vector <int> > &V)
 	}
 	A.push_back(temp);
 	//for #5 & #6
-	temp.empty();
+	temp.clear();
 	for (cents = 10; cents <= 20; cents++) {
 		temp.push_back(cents);
 	}
 	A.push_back(temp);
-	//slow(V,A);
+	slow(V,A);
 	greedy(V, A);
 	dynamic(V, A);
 }
@@ -137,7 +137,32 @@ void runTime(int choice, vector <vector <int> > &V)
 		}
 		double t2 = getMilliseconds() - t1;
 		cout << "Total Time for 100 loops: " << t2 << " A: " << x << endl;
-		ofile << t2 << "," << x << endl;
+		ofile << x << "," << t2 << endl;
+
+	}
+	ofile.close();
+	ofile.open("timing2.csv");
+	for (int x = MIN; x < MAX; x += (MAX - MIN) / 10 + 1) { //the +1 prevents adding 0 each time
+		double t1 = getMilliseconds();
+		for (int y = 0; y < 100; y++) {
+			switch (choice){
+			case 1:
+				changeslow(V[2], x);
+				break;
+			case 2:
+				changegreedy(V[2], x);
+				break;
+			case 3:
+				changedp(V[2], x);
+				break;
+			default:
+				cout << "Invalid Choice";
+				break;
+			}
+		}
+		double t2 = getMilliseconds() - t1;
+		cout << "Total Time for 100 loops: " << t2 << " A: " << x << endl;
+		ofile << x << "," << t2 << endl;
 
 	}
 	ofile.close();
