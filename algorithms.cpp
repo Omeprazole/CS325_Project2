@@ -122,7 +122,7 @@ vector<int> changedp(const vector<int>& V, int A){
 	int i = V.size() - 1;
 	int j = A;
 	int track = T[V.size() - 1][A];
-	while (j > 0){
+	while (j > 0 && i > 0){
 		if (T[i - 1][j] == track)
 			i--;
 		else{
