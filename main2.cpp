@@ -211,7 +211,6 @@ void slow(vector <vector <int> > &V, vector <vector <int> > &A)
 
 void greedy(vector <vector <int> > &V, vector <vector <int> > &A)
 {
-	cout << "test";
 	//#4
 	ofstream ofile;
 	cout << "Opening greedy-report4.csv...";

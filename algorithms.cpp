@@ -117,7 +117,6 @@ vector<int> changedp(const vector<int>& V, int A){
 
 		}
 	}
-	cout << "";
 	//Track to find the number of coins on each coin value
 	int i = V.size() - 1;
 	int j = A;
