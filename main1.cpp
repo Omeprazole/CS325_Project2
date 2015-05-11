@@ -88,7 +88,7 @@ int main(int argc, char* argv[]) {
 		return -1;
 	}
 
-	cout << "Waitting for output results into " << of_name << " file" << endl;
+	cout << "Waiting for output results into " << of_name << " file" << endl;
 	//Output results of each algorithm in the file
 	output_file << "Divide and Conquer Algorithm Result:" << endl;
 	for (int i = 0; i < rows.size(); i += 2){
@@ -113,7 +113,7 @@ int main(int argc, char* argv[]) {
 		output_file << count(C) << endl;
 		C.clear();
 	}
-	cout << "Done, results are output into the " << of_name << " file" << endl;
+	cout << "Done, results were outputted into the " << of_name << " file" << endl;
 
 	output_file.close();
 }
